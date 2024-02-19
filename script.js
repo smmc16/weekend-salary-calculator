@@ -13,6 +13,7 @@ function submitForm(event) {
     let jobTitle = document.querySelector('#job-title').value;
     let annualSalary = document.querySelector('#annual-salary').value;
     let monthlyCostText = document.querySelector('#monthly-cost');
+    let totalText = document.querySelector('#total-text');
     salaryData.innerHTML += `
         <tr>
             <td>${firstName}</td>
@@ -20,7 +21,7 @@ function submitForm(event) {
             <td>${idNumber}</td>
             <td>${jobTitle}</td>
             <td>$${annualSalary}</td>
-            <td><input type="button" value="Delete" onclick="deleteRow(event)" /></td>
+            <td><button onclick="deleteRow(event)">Delete</button> </td>
         </tr>
     `
     totalCost = totalCost + Number(annualSalary);
@@ -29,7 +30,7 @@ function submitForm(event) {
     monthlyCostText.innerHTML = `$ ${monthlyCost}`;
 
     if (monthlyCost >= 20000) {
-        monthlyCostText.className = 'over-budget';
+        totalText.classList.add('over-budget');
     }
 };
 
