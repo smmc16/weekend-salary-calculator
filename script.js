@@ -1,5 +1,8 @@
 console.log('hello world');
 
+let totalCost = 0;
+
+
 function submitForm(event) {
     event.preventDefault();
     console.log('form submitted');
@@ -9,6 +12,7 @@ function submitForm(event) {
     let idNumber = document.querySelector('#id-number').value;
     let jobTitle = document.querySelector('#job-title').value;
     let annualSalary = document.querySelector('#annual-salary').value;
+    let monthlyCostText = document.querySelector('#monthly-cost');
     salaryData.innerHTML += `
         <tr>
             <td>${firstName}</td>
@@ -19,6 +23,10 @@ function submitForm(event) {
             <td><input type="button" value="Delete" onclick="deleteRow(event)" /></td>
         </tr>
     `
+    totalCost = totalCost + Number(annualSalary);
+    console.log(totalCost);
+    let monthlyCost = totalCost / 12;
+    monthlyCostText.innerHTML = `${monthlyCost}`;
 };
 
 function deleteRow(event) {
