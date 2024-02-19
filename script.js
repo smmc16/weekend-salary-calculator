@@ -32,8 +32,14 @@ function submitForm(event) {
     if (monthlyCost >= 20000) {
         totalText.classList.add('over-budget');
     }
+    clearInputs();
+};
+
+function clearInputs() {
+    let allInputs = document.querySelectorAll('.input');
+    allInputs.forEach(singleInput => singleInput.value = '');
 };
 
 function deleteRow(event) {
     event.target.parentElement.parentElement.remove();
-}
+};
