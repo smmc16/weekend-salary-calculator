@@ -26,7 +26,11 @@ function submitForm(event) {
     totalCost = totalCost + Number(annualSalary);
     console.log(totalCost);
     let monthlyCost = totalCost / 12;
-    monthlyCostText.innerHTML = `${monthlyCost}`;
+    monthlyCostText.innerHTML = `$ ${monthlyCost}`;
+
+    if (monthlyCost >= 20000) {
+        monthlyCostText.style.color = 'red';
+    }
 };
 
 function deleteRow(event) {
