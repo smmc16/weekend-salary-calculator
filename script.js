@@ -29,7 +29,7 @@ function submitForm(event) {
     monthlyCostText.innerHTML = `$ ${monthlyCost}`;
 
     if (monthlyCost >= 20000) {
-        monthlyCostText.style.color = 'red';
+        monthlyCostText.className = 'over-budget';
     }
 };
 
