@@ -31,7 +31,6 @@ function submitForm(event) {
         totalText.classList.add('over-budget');
     }
     clearInputs();
-
 };
 
 function clearInputs() {
