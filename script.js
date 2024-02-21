@@ -2,7 +2,6 @@ console.log('hello world');
 
 let totalCost = 0;
 
-
 function submitForm(event) {
     event.preventDefault();
     console.log('form submitted');
@@ -12,15 +11,14 @@ function submitForm(event) {
     let idNumber = document.querySelector('#id-number').value;
     let jobTitle = document.querySelector('#job-title').value;
     let annualSalary = document.querySelector('#annual-salary').value;
-    let monthlyCostText = document.querySelector('#monthly-cost');
-    let totalText = document.querySelector('#total-text');
+    
     salaryData.innerHTML += `
         <tr>
             <td>${firstName}</td>
             <td>${lastName}</td>
             <td>${idNumber}</td>
             <td>${jobTitle}</td>
-            <td>$${annualSalary}</td>
+            <td>$<span class="aSalary">${annualSalary}</span></td>
             <td><button onclick="deleteRow(event)">Delete</button> </td>
         </tr>
     `
@@ -33,6 +31,7 @@ function submitForm(event) {
         totalText.classList.add('over-budget');
     }
     clearInputs();
+
 };
 
 function clearInputs() {
@@ -40,6 +39,19 @@ function clearInputs() {
     allInputs.forEach(singleInput => singleInput.value = '');
 };
 
+let monthlyCostText = document.querySelector('#monthly-cost');
+let totalText = document.querySelector('#total-text');
+
 function deleteRow(event) {
+    let salaryToSubtract = event.target.parentElement.parentElement.querySelector('.aSalary').innerHTML;
+    console.log('salary to subtract:', salaryToSubtract);
+    console.log('before subtraction:', totalCost);
+    totalCost = totalCost - Number(salaryToSubtract);
+    console.log('after subtraction:', totalCost);
+    let monthlyCost = totalCost / 12;
+    monthlyCostText.innerHTML = `$ ${monthlyCost}`
+    if (monthlyCost < 20000) {
+        totalText.classList.remove('over-budget');
+    }
     event.target.parentElement.parentElement.remove();
 };
